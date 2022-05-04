@@ -166,4 +166,8 @@ return [
 
     'attributes' => [],
 
+    'currency' => [
+        'symbols_not_found' => 'The following symbols was not found in the database: :symbols'
+    ]
+
 ];

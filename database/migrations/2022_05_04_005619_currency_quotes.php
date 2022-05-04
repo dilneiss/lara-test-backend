@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('currencies', function (Blueprint $table) {
+        Schema::create('currency_quotes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('symbol')->unique();
-            $table->string('coingecko_id');
+            $table->bigInteger('currency_id')->unsigned();
+            $table->decimal('value', 30, 20, true);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('currencies');
+        Schema::dropIfExists('currency_quotes');
     }
 };

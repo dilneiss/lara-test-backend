@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('currencies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('symbol')->unique();
-            $table->string('coingecko_id');
-            $table->timestamps();
+        Schema::table('currency_quotes', function (Blueprint $table) {
+            $table->foreign(['currency_id'], 'currency_id_fk')->references(['id'])->on('currencies');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('currencies');
+        Schema::table('currency_quotes', function (Blueprint $table) {
+            $table->dropForeign('currency_id_fk');
+        });
     }
 };
